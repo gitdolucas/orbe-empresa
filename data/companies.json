@@ -1,0 +1,692 @@
+[
+  {
+    "company": {
+      "cnpj": "19131243000197",
+      "rootCnpj": "19131243",
+      "legalName": "OPEN KNOWLEDGE BRASIL",
+      "tradeName": "REDE PELO CONHECIMENTO LIVRE",
+      "registrationStatus": "ATIVA",
+      "openedAt": "2013-10-03",
+      "establishmentType": "HEADQUARTERS",
+      "legalNature": "Associação Privada",
+      "address": {
+        "street": "PAULISTA 37",
+        "number": "37",
+        "complement": "ANDAR 4",
+        "district": "BELA VISTA",
+        "city": "SAO PAULO",
+        "cityCode": "3550308",
+        "state": "SP",
+        "postalCode": "01311902"
+      },
+      "declaredActivities": [
+        {
+          "code": "9430800",
+          "name": "Atividades de associações de defesa de direitos sociais",
+          "primary": true
+        },
+        {
+          "code": "9493600",
+          "name": "Atividades de organizações associativas ligadas à cultura e à arte",
+          "primary": false
+        },
+        {
+          "code": "9499500",
+          "name": "Atividades associativas não especificadas anteriormente",
+          "primary": false
+        },
+        {
+          "code": "8599699",
+          "name": "Outras atividades de ensino não especificadas anteriormente",
+          "primary": false
+        },
+        {
+          "code": "8230001",
+          "name": "Serviços de organização de feiras, congressos, exposições e festas",
+          "primary": false
+        },
+        {
+          "code": "6204000",
+          "name": "Consultoria em tecnologia da informação",
+          "primary": false
+        }
+      ]
+    },
+    "snapshots": [
+      {
+        "id": "6d0d85cde66fa72e57e31873bea425036647f601c705bfcf4ca19133bed0e0fb",
+        "companyId": "19131243000197",
+        "source": {
+          "id": "brasilapi-cnpj-v1",
+          "name": "BrasilAPI · dados cadastrais da Receita Federal via Minha Receita",
+          "url": "https://brasilapi.com.br/api/cnpj/v1/19131243000197",
+          "kind": "PUBLIC_API",
+          "datasetPeriod": null,
+          "referenceDate": "2026-11-11T14:16:27.588Z",
+          "retrievedAt": "2026-11-11T14:16:27.588Z",
+          "licenseReference": "https://github.com/BrasilAPI/BrasilAPI — verificar condições e fonte original antes de redistribuição em escala"
+        },
+        "data": {
+          "cnpj": "19131243000197",
+          "rootCnpj": "19131243",
+          "legalName": "OPEN KNOWLEDGE BRASIL",
+          "tradeName": "REDE PELO CONHECIMENTO LIVRE",
+          "registrationStatus": "ATIVA",
+          "openedAt": "2013-10-03",
+          "establishmentType": "HEADQUARTERS",
+          "legalNature": "Associação Privada",
+          "address": {
+            "street": "PAULISTA 37",
+            "number": "37",
+            "complement": "ANDAR 4",
+            "district": "BELA VISTA",
+            "city": "SAO PAULO",
+            "cityCode": "3550308",
+            "state": "SP",
+            "postalCode": "01311902"
+          },
+          "declaredActivities": [
+            {
+              "code": "9430800",
+              "name": "Atividades de associações de defesa de direitos sociais",
+              "primary": true
+            },
+            {
+              "code": "6204000",
+              "name": "Consultoria em tecnologia da informação",
+              "primary": false
+            },
+            {
+              "code": "8230001",
+              "name": "Serviços de organização de feiras, congressos, exposições e festas",
+              "primary": false
+            },
+            {
+              "code": "8599699",
+              "name": "Outras atividades de ensino não especificadas anteriormente",
+              "primary": false
+            },
+            {
+              "code": "9493600",
+              "name": "Atividades de organizações associativas ligadas à cultura e à arte",
+              "primary": false
+            },
+            {
+              "code": "9499500",
+              "name": "Atividades associativas não especificadas anteriormente",
+              "primary": false
+            }
+          ]
+        },
+        "contentHash": "323e5e130808378f895c464e543b4fd6d9d1b179974356cefd49ee5715ea939c",
+        "schemaVersion": 1,
+        "ingestedAt": "2026-11-11T14:16:27.596Z"
+      }
+    ],
+    "changes": [],
+    "observedActivities": [
+      {
+        "activityCode": "data-consulting",
+        "activityName": "Consultoria e infraestrutura de dados",
+        "category": "Tecnologia e dados",
+        "possibleCnaes": [
+          "6204000"
+        ],
+        "id": "19131243000197:data-consulting",
+        "confidenceLevel": "MEDIUM",
+        "classificationStatus": "COMPATIBLE",
+        "modelVersion": "curated-taxonomy-v1",
+        "reviewedBy": "Revisão assistida de fonte pública; validação humana pendente",
+        "analyzedAt": "2026-11-11T14:20:41.414Z",
+        "evidence": [
+          {
+            "sourceUrl": "https://ok.org.br/eixos-de-atuacao/prestacao-de-servicos/",
+            "sourceType": "OFFICIAL_WEBSITE",
+            "excerpt": "Automação de pipelines e processos de ETL",
+            "collectedAt": "2026-11-11T14:20:41.414Z",
+            "contentHash": "9988d105b0134c14654989602dbd1ca9023d7d8217263ff2a62e6293729cfc91",
+            "association": "Domínio associado ao CNPJ pela página https://ok.org.br/apoie/, que publica razão social Open Knowledge Brasil e CNPJ 19.131.243/0001-97."
+          }
+        ]
+      },
+      {
+        "activityCode": "data-education",
+        "activityName": "Capacitação em dados",
+        "category": "Educação e capacitação",
+        "possibleCnaes": [
+          "8599699"
+        ],
+        "id": "19131243000197:data-education",
+        "confidenceLevel": "MEDIUM",
+        "classificationStatus": "COMPATIBLE",
+        "modelVersion": "curated-taxonomy-v1",
+        "reviewedBy": "Revisão assistida de fonte pública; validação humana pendente",
+        "analyzedAt": "2026-11-11T14:20:41.414Z",
+        "evidence": [
+          {
+            "sourceUrl": "https://ok.org.br/eixos-de-atuacao/prestacao-de-servicos/",
+            "sourceType": "OFFICIAL_WEBSITE",
+            "excerpt": "Cursos sob demanda, customizados para a necessidade de sua organização",
+            "collectedAt": "2026-11-11T14:20:41.414Z",
+            "contentHash": "52dfeaf5d425bdb3372fc1a6baf8868636d8fa901d0aaae3d95db62a96de8a46",
+            "association": "Domínio associado ao CNPJ pela página https://ok.org.br/apoie/, que publica razão social Open Knowledge Brasil e CNPJ 19.131.243/0001-97."
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "company": {
+      "cnpj": "00000000000191",
+      "rootCnpj": "00000000",
+      "legalName": "BANCO DO BRASIL SA",
+      "tradeName": "DIRECAO GERAL",
+      "registrationStatus": "ATIVA",
+      "openedAt": "1966-08-01",
+      "establishmentType": "HEADQUARTERS",
+      "legalNature": "Sociedade de Economia Mista",
+      "address": {
+        "street": "SAUN QUADRA 5 BLOCO B TORRE I, II, III",
+        "number": "SN",
+        "complement": "ANDAR T I SL S101 A S1602 T II SL C101 A C1602 TIII SL N101 A N1602",
+        "district": "ASA NORTE",
+        "city": "BRASILIA",
+        "cityCode": "5300108",
+        "state": "DF",
+        "postalCode": "70040912"
+      },
+      "declaredActivities": [
+        {
+          "code": "6422100",
+          "name": "Bancos múltiplos, com carteira comercial",
+          "primary": true
+        },
+        {
+          "code": "6499999",
+          "name": "Outras atividades de serviços financeiros não especificadas anteriormente",
+          "primary": false
+        }
+      ]
+    },
+    "snapshots": [
+      {
+        "id": "b4594a1092f994a1fc848d9647b78df991bb7926786f6f7f74edba83b1b650a4",
+        "companyId": "00000000000191",
+        "source": {
+          "id": "brasilapi-cnpj-v1",
+          "name": "BrasilAPI · dados cadastrais da Receita Federal via Minha Receita",
+          "url": "https://brasilapi.com.br/api/cnpj/v1/00000000000191",
+          "kind": "PUBLIC_API",
+          "datasetPeriod": null,
+          "referenceDate": "2026-11-11T14:16:27.628Z",
+          "retrievedAt": "2026-11-11T14:16:27.628Z",
+          "licenseReference": "https://github.com/BrasilAPI/BrasilAPI — verificar condições e fonte original antes de redistribuição em escala"
+        },
+        "data": {
+          "cnpj": "00000000000191",
+          "rootCnpj": "00000000",
+          "legalName": "BANCO DO BRASIL SA",
+          "tradeName": "DIRECAO GERAL",
+          "registrationStatus": "ATIVA",
+          "openedAt": "1966-08-01",
+          "establishmentType": "HEADQUARTERS",
+          "legalNature": "Sociedade de Economia Mista",
+          "address": {
+            "street": "SAUN QUADRA 5 BLOCO B TORRE I, II, III",
+            "number": "SN",
+            "complement": "ANDAR T I SL S101 A S1602 T II SL C101 A C1602 TIII SL N101 A N1602",
+            "district": "ASA NORTE",
+            "city": "BRASILIA",
+            "cityCode": "5300108",
+            "state": "DF",
+            "postalCode": "70040912"
+          },
+          "declaredActivities": [
+            {
+              "code": "6422100",
+              "name": "Bancos múltiplos, com carteira comercial",
+              "primary": true
+            },
+            {
+              "code": "6499999",
+              "name": "Outras atividades de serviços financeiros não especificadas anteriormente",
+              "primary": false
+            }
+          ]
+        },
+        "contentHash": "c058384edb4215d4dbc2396fd0fecdf720675fb2e3cec0f90221cd24b0460876",
+        "schemaVersion": 1,
+        "ingestedAt": "2026-11-11T14:16:27.628Z"
+      }
+    ],
+    "changes": [],
+    "observedActivities": []
+  },
+  {
+    "company": {
+      "cnpj": "47960950000121",
+      "rootCnpj": "47960950",
+      "legalName": "MAGAZINE LUIZA S/A",
+      "tradeName": "MAGAZINE LUIZA",
+      "registrationStatus": "ATIVA",
+      "openedAt": "1966-10-24",
+      "establishmentType": "HEADQUARTERS",
+      "legalNature": "Sociedade Anônima Aberta",
+      "address": {
+        "street": "VOLUNTARIOS DA FRANCA",
+        "number": "1465",
+        "complement": null,
+        "district": "CENTRO",
+        "city": "FRANCA",
+        "cityCode": "3516200",
+        "state": "SP",
+        "postalCode": "14400490"
+      },
+      "declaredActivities": [
+        {
+          "code": "4713004",
+          "name": "Lojas de departamentos ou magazines, exceto lojas francas (Duty free)",
+          "primary": true
+        },
+        {
+          "code": "3329501",
+          "name": "Serviços de montagem de móveis de qualquer material",
+          "primary": false
+        },
+        {
+          "code": "4623109",
+          "name": "Comércio atacadista de alimentos para animais",
+          "primary": false
+        },
+        {
+          "code": "4635401",
+          "name": "Comércio atacadista de água mineral",
+          "primary": false
+        },
+        {
+          "code": "4635402",
+          "name": "Comércio atacadista de cerveja, chope e refrigerante",
+          "primary": false
+        },
+        {
+          "code": "4635499",
+          "name": "Comércio atacadista de bebidas não especificadas anteriormente",
+          "primary": false
+        },
+        {
+          "code": "4646001",
+          "name": "Comércio atacadista de cosméticos e produtos de perfumaria",
+          "primary": false
+        },
+        {
+          "code": "4646002",
+          "name": "Comércio atacadista de produtos de higiene pessoal",
+          "primary": false
+        },
+        {
+          "code": "4649408",
+          "name": "Comércio atacadista de produtos de higiene, limpeza e conservação domiciliar",
+          "primary": false
+        },
+        {
+          "code": "4691500",
+          "name": "Comércio atacadista de mercadorias em geral, com predominância de produtos alimentícios",
+          "primary": false
+        },
+        {
+          "code": "4693100",
+          "name": "Comércio atacadista de mercadorias em geral, sem predominância de alimentos ou de insumos agropecuários",
+          "primary": false
+        },
+        {
+          "code": "4711302",
+          "name": "Comércio varejista de mercadorias em geral, com predominância de produtos alimentícios - supermercados",
+          "primary": false
+        },
+        {
+          "code": "4723700",
+          "name": "Comércio varejista de bebidas",
+          "primary": false
+        },
+        {
+          "code": "4729699",
+          "name": "Comércio varejista de produtos alimentícios em geral ou especializado em produtos alimentícios não especificados anteriormente",
+          "primary": false
+        },
+        {
+          "code": "4753900",
+          "name": "Comércio varejista especializado de eletrodomésticos e equipamentos de áudio e vídeo",
+          "primary": false
+        },
+        {
+          "code": "4771701",
+          "name": "Comércio varejista de produtos farmacêuticos, sem manipulação de fórmulas",
+          "primary": false
+        },
+        {
+          "code": "4771704",
+          "name": "Comércio varejista de medicamentos veterinários",
+          "primary": false
+        },
+        {
+          "code": "4772500",
+          "name": "Comércio varejista de cosméticos, produtos de perfumaria e de higiene pessoal",
+          "primary": false
+        },
+        {
+          "code": "4774100",
+          "name": "Comércio varejista de artigos de óptica",
+          "primary": false
+        },
+        {
+          "code": "4789099",
+          "name": "Comércio varejista de outros produtos não especificados anteriormente",
+          "primary": false
+        },
+        {
+          "code": "5211799",
+          "name": "Depósitos de mercadorias para terceiros, exceto armazéns gerais e guarda-móveis",
+          "primary": false
+        },
+        {
+          "code": "6202300",
+          "name": "Desenvolvimento e licenciamento de programas de computador customizáveis",
+          "primary": false
+        },
+        {
+          "code": "6203100",
+          "name": "Desenvolvimento e licenciamento de programas de computador não-customizáveis",
+          "primary": false
+        },
+        {
+          "code": "6311900",
+          "name": "Tratamento de dados, provedores de serviços de aplicação e serviços de hospedagem na internet",
+          "primary": false
+        },
+        {
+          "code": "6319400",
+          "name": "Portais, provedores de conteúdo e outros serviços de informação na internet",
+          "primary": false
+        },
+        {
+          "code": "6619302",
+          "name": "Correspondentes de instituições financeiras",
+          "primary": false
+        },
+        {
+          "code": "7311400",
+          "name": "Agências de publicidade",
+          "primary": false
+        },
+        {
+          "code": "7312200",
+          "name": "Agenciamento de espaços para publicidade, exceto em veículos de comunicação",
+          "primary": false
+        },
+        {
+          "code": "7319002",
+          "name": "Promoção de vendas",
+          "primary": false
+        },
+        {
+          "code": "7319004",
+          "name": "Consultoria em publicidade",
+          "primary": false
+        },
+        {
+          "code": "7319099",
+          "name": "Outras atividades de publicidade não especificadas anteriormente",
+          "primary": false
+        },
+        {
+          "code": "7490104",
+          "name": "Atividades de intermediação e agenciamento de serviços e negócios em geral, exceto imobiliários",
+          "primary": false
+        },
+        {
+          "code": "7729202",
+          "name": "Aluguel de móveis, utensílios e aparelhos de uso doméstico e pessoal; instrumentos musicais",
+          "primary": false
+        },
+        {
+          "code": "7911200",
+          "name": "Agências de viagens",
+          "primary": false
+        },
+        {
+          "code": "7912100",
+          "name": "Operadores turísticos",
+          "primary": false
+        },
+        {
+          "code": "7990200",
+          "name": "Serviços de reservas e outros serviços de turismo não especificados anteriormente",
+          "primary": false
+        }
+      ]
+    },
+    "snapshots": [
+      {
+        "id": "bd97ae8919061945d7ebbf80bb8d1ef9bf56a9c8c9bb913f288a1948d485224d",
+        "companyId": "47960950000121",
+        "source": {
+          "id": "brasilapi-cnpj-v1",
+          "name": "BrasilAPI · dados cadastrais da Receita Federal via Minha Receita",
+          "url": "https://brasilapi.com.br/api/cnpj/v1/47960950000121",
+          "kind": "PUBLIC_API",
+          "datasetPeriod": null,
+          "referenceDate": "2026-11-11T14:16:27.663Z",
+          "retrievedAt": "2026-11-11T14:16:27.663Z",
+          "licenseReference": "https://github.com/BrasilAPI/BrasilAPI — verificar condições e fonte original antes de redistribuição em escala"
+        },
+        "data": {
+          "cnpj": "47960950000121",
+          "rootCnpj": "47960950",
+          "legalName": "MAGAZINE LUIZA S/A",
+          "tradeName": "MAGAZINE LUIZA",
+          "registrationStatus": "ATIVA",
+          "openedAt": "1966-10-24",
+          "establishmentType": "HEADQUARTERS",
+          "legalNature": "Sociedade Anônima Aberta",
+          "address": {
+            "street": "VOLUNTARIOS DA FRANCA",
+            "number": "1465",
+            "complement": null,
+            "district": "CENTRO",
+            "city": "FRANCA",
+            "cityCode": "3516200",
+            "state": "SP",
+            "postalCode": "14400490"
+          },
+          "declaredActivities": [
+            {
+              "code": "4713004",
+              "name": "Lojas de departamentos ou magazines, exceto lojas francas (Duty free)",
+              "primary": true
+            },
+            {
+              "code": "3329501",
+              "name": "Serviços de montagem de móveis de qualquer material",
+              "primary": false
+            },
+            {
+              "code": "4623109",
+              "name": "Comércio atacadista de alimentos para animais",
+              "primary": false
+            },
+            {
+              "code": "4635401",
+              "name": "Comércio atacadista de água mineral",
+              "primary": false
+            },
+            {
+              "code": "4635402",
+              "name": "Comércio atacadista de cerveja, chope e refrigerante",
+              "primary": false
+            },
+            {
+              "code": "4635499",
+              "name": "Comércio atacadista de bebidas não especificadas anteriormente",
+              "primary": false
+            },
+            {
+              "code": "4646001",
+              "name": "Comércio atacadista de cosméticos e produtos de perfumaria",
+              "primary": false
+            },
+            {
+              "code": "4646002",
+              "name": "Comércio atacadista de produtos de higiene pessoal",
+              "primary": false
+            },
+            {
+              "code": "4649408",
+              "name": "Comércio atacadista de produtos de higiene, limpeza e conservação domiciliar",
+              "primary": false
+            },
+            {
+              "code": "4691500",
+              "name": "Comércio atacadista de mercadorias em geral, com predominância de produtos alimentícios",
+              "primary": false
+            },
+            {
+              "code": "4693100",
+              "name": "Comércio atacadista de mercadorias em geral, sem predominância de alimentos ou de insumos agropecuários",
+              "primary": false
+            },
+            {
+              "code": "4711302",
+              "name": "Comércio varejista de mercadorias em geral, com predominância de produtos alimentícios - supermercados",
+              "primary": false
+            },
+            {
+              "code": "4723700",
+              "name": "Comércio varejista de bebidas",
+              "primary": false
+            },
+            {
+              "code": "4729699",
+              "name": "Comércio varejista de produtos alimentícios em geral ou especializado em produtos alimentícios não especificados anteriormente",
+              "primary": false
+            },
+            {
+              "code": "4753900",
+              "name": "Comércio varejista especializado de eletrodomésticos e equipamentos de áudio e vídeo",
+              "primary": false
+            },
+            {
+              "code": "4771701",
+              "name": "Comércio varejista de produtos farmacêuticos, sem manipulação de fórmulas",
+              "primary": false
+            },
+            {
+              "code": "4771704",
+              "name": "Comércio varejista de medicamentos veterinários",
+              "primary": false
+            },
+            {
+              "code": "4772500",
+              "name": "Comércio varejista de cosméticos, produtos de perfumaria e de higiene pessoal",
+              "primary": false
+            },
+            {
+              "code": "4774100",
+              "name": "Comércio varejista de artigos de óptica",
+              "primary": false
+            },
+            {
+              "code": "4789099",
+              "name": "Comércio varejista de outros produtos não especificados anteriormente",
+              "primary": false
+            },
+            {
+              "code": "5211799",
+              "name": "Depósitos de mercadorias para terceiros, exceto armazéns gerais e guarda-móveis",
+              "primary": false
+            },
+            {
+              "code": "6202300",
+              "name": "Desenvolvimento e licenciamento de programas de computador customizáveis",
+              "primary": false
+            },
+            {
+              "code": "6203100",
+              "name": "Desenvolvimento e licenciamento de programas de computador não-customizáveis",
+              "primary": false
+            },
+            {
+              "code": "6311900",
+              "name": "Tratamento de dados, provedores de serviços de aplicação e serviços de hospedagem na internet",
+              "primary": false
+            },
+            {
+              "code": "6319400",
+              "name": "Portais, provedores de conteúdo e outros serviços de informação na internet",
+              "primary": false
+            },
+            {
+              "code": "6619302",
+              "name": "Correspondentes de instituições financeiras",
+              "primary": false
+            },
+            {
+              "code": "7311400",
+              "name": "Agências de publicidade",
+              "primary": false
+            },
+            {
+              "code": "7312200",
+              "name": "Agenciamento de espaços para publicidade, exceto em veículos de comunicação",
+              "primary": false
+            },
+            {
+              "code": "7319002",
+              "name": "Promoção de vendas",
+              "primary": false
+            },
+            {
+              "code": "7319004",
+              "name": "Consultoria em publicidade",
+              "primary": false
+            },
+            {
+              "code": "7319099",
+              "name": "Outras atividades de publicidade não especificadas anteriormente",
+              "primary": false
+            },
+            {
+              "code": "7490104",
+              "name": "Atividades de intermediação e agenciamento de serviços e negócios em geral, exceto imobiliários",
+              "primary": false
+            },
+            {
+              "code": "7729202",
+              "name": "Aluguel de móveis, utensílios e aparelhos de uso doméstico e pessoal; instrumentos musicais",
+              "primary": false
+            },
+            {
+              "code": "7911200",
+              "name": "Agências de viagens",
+              "primary": false
+            },
+            {
+              "code": "7912100",
+              "name": "Operadores turísticos",
+              "primary": false
+            },
+            {
+              "code": "7990200",
+              "name": "Serviços de reservas e outros serviços de turismo não especificados anteriormente",
+              "primary": false
+            }
+          ]
+        },
+        "contentHash": "6a2d0364a78e1cccfcf615283ff842becc098903aded0448abe2b7929d706eb4",
+        "schemaVersion": 1,
+        "ingestedAt": "2026-11-11T14:16:27.663Z"
+      }
+    ],
+    "changes": [],
+    "observedActivities": []
+  }
+]

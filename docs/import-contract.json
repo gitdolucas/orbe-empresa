@@ -1,0 +1,66 @@
+[
+  {
+    "company": {
+      "cnpj": "19131243000197",
+      "rootCnpj": "19131243",
+      "legalName": "OPEN KNOWLEDGE BRASIL",
+      "tradeName": "REDE PELO CONHECIMENTO LIVRE",
+      "registrationStatus": "ATIVA",
+      "openedAt": "2013-10-03",
+      "establishmentType": "HEADQUARTERS",
+      "legalNature": "Associação Privada",
+      "address": {
+        "street": "PAULISTA 37",
+        "number": "37",
+        "complement": "ANDAR 4",
+        "district": "BELA VISTA",
+        "city": "SAO PAULO",
+        "cityCode": "3550308",
+        "state": "SP",
+        "postalCode": "01311902"
+      },
+      "declaredActivities": [
+        {
+          "code": "9430800",
+          "name": "Atividades de associações de defesa de direitos sociais",
+          "primary": true
+        },
+        {
+          "code": "9493600",
+          "name": "Atividades de organizações associativas ligadas à cultura e à arte",
+          "primary": false
+        },
+        {
+          "code": "9499500",
+          "name": "Atividades associativas não especificadas anteriormente",
+          "primary": false
+        },
+        {
+          "code": "8599699",
+          "name": "Outras atividades de ensino não especificadas anteriormente",
+          "primary": false
+        },
+        {
+          "code": "8230001",
+          "name": "Serviços de organização de feiras, congressos, exposições e festas",
+          "primary": false
+        },
+        {
+          "code": "6204000",
+          "name": "Consultoria em tecnologia da informação",
+          "primary": false
+        }
+      ]
+    },
+    "source": {
+      "id": "REPLACE_WITH_VERIFIED_SOURCE",
+      "name": "REPLACE_WITH_VERIFIED_DATASET_NAME",
+      "url": "https://example.org/REPLACE_WITH_REAL_SOURCE",
+      "kind": "OFFICIAL_DATASET",
+      "datasetPeriod": "2026-10",
+      "referenceDate": "2026-10-31T23:59:59.000Z",
+      "retrievedAt": "2026-11-11T14:00:00.000Z",
+      "licenseReference": "REPLACE_WITH_VERIFIED_REUSE_TERMS"
+    }
+  }
+]

@@ -1,0 +1,11 @@
+node_modules/
+.next/
+.runtime/
+package-lock.json
+data/
+drizzle/
+docs/MVP.md
+AGENTS.md
+next-env.d.ts
+playwright-report/
+test-results/

@@ -1,0 +1,59 @@
+{
+  "name": "empresa",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "node --env-file-if-exists=.env.local --import tsx scripts/migrate.ts",
+    "import:companies": "node --env-file-if-exists=.env.local --import tsx scripts/import-companies.ts",
+    "collect:examples": "node --env-file-if-exists=.env.local --import tsx scripts/collect-examples.ts",
+    "enrich:activities": "node --env-file-if-exists=.env.local --import tsx scripts/enrich-activities.ts",
+    "collect:evidence": "node --env-file-if-exists=.env.local --import tsx scripts/collect-evidence.ts",
+    "db:seed": "node --env-file-if-exists=.env.local --import tsx scripts/seed.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@fontsource-variable/geist-mono": "^5.3.0",
+    "@fontsource-variable/schibsted-grotesk": "^5.3.0",
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "@radix-ui/react-slot": "^1.2.0",
+    "@sentry/nextjs": "^11.12.0",
+    "@upstash/redis": "^1.35.0",
+    "@vercel/analytics": "^2.0.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "drizzle-orm": "^0.45.0",
+    "hono": "^4.10.0",
+    "lucide-react": "^0.577.0",
+    "next": "16.4.6",
+    "postgres": "^3.4.7",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "tailwind-merge": "^3.3.0",
+    "zod": "^4.1.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "@tailwindcss/postcss": "^4.1.0",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "drizzle-kit": "^0.31.0",
+    "prettier": "^3.10.0",
+    "tailwindcss": "^4.1.0",
+    "tsx": "^4.20.0",
+    "typescript": "^5.9.0",
+    "vitest": "^4.0.0"
+  },
+  "type": "module",
+  "overrides": {
+    "esbuild": "^0.28.2"
+  }
+}

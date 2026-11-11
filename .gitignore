@@ -1,0 +1,13 @@
+node_modules/
+.next/
+.vercel/
+.env*
+!.env.example
+.runtime/
+playwright-report/
+test-results/
+*.tsbuildinfo
+.DS_Store
+
+.firecrawl/
+.vercel
