@@ -1,5 +1,11 @@
 import { z } from 'zod';
 import type { Company, Source } from '@/lib/company';
+import { isValidCnpj } from '@/lib/cnpj';
+import {
+  reserveProviderRequest,
+  recordProviderFailure,
+  ProviderPolicyError,
+} from './provider-policy';
 const providerSchema = z.object({
   cnpj: z.string(),
   razao_social: z.string(),
@@ -21,6 +27,8 @@ const providerSchema = z.object({
   cnaes_secundarios: z.array(z.object({ codigo: z.number(), descricao: z.string() })),
 });
 export async function fetchCompany(cnpj: string): Promise<{ company: Company; source: Source }> {
+  if (!isValidCnpj(cnpj)) throw new Error('INVALID_CNPJ');
+  await reserveProviderRequest(cnpj);
   const url = `https://brasilapi.com.br/api/cnpj/v1/${cnpj}`;
   let response: Response;
   try {
@@ -30,10 +38,13 @@ export async function fetchCompany(cnpj: string): Promise<{ company: Company; so
       cache: 'no-store',
     });
   } catch {
-    throw new Error('PROVIDER_UNAVAILABLE');
+    throw new ProviderPolicyError(503, await recordProviderFailure(cnpj, 503));
   }
-  if (response.status === 404) throw new Error('COMPANY_NOT_IN_COVERAGE');
-  if (!response.ok) throw new Error('PROVIDER_UNAVAILABLE');
+  if (!response.ok) {
+    const status = response.status === 404 ? 404 : response.status === 429 ? 429 : 503;
+    const delay = await recordProviderFailure(cnpj, status, response.headers.get('Retry-After'));
+    throw new ProviderPolicyError(status, delay);
+  }
   const length = Number(response.headers.get('content-length') ?? 0);
   if (length > 150000) throw new Error('PROVIDER_RESPONSE_TOO_LARGE');
   const body = await response.text();

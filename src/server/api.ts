@@ -103,11 +103,13 @@ app.notFound((c) =>
   c.json({ error: { code: 'NOT_FOUND', message: 'Endpoint não encontrado.' } }, 404),
 );
 app.onError((error, c) => {
-  if (error instanceof ServiceError)
+  if (error instanceof ServiceError) {
+    if (error.retryAfter) c.header('Retry-After', String(error.retryAfter));
     return c.json(
       { error: { code: error.code, message: error.userMessage } },
       error.status as 400 | 404 | 429 | 503,
     );
+  }
   console.error(JSON.stringify({ level: 'error', code: 'INTERNAL_ERROR', errorType: error.name }));
   try {
     after(() => reportError(new Error('INTERNAL_ERROR'), '/api/v1'));

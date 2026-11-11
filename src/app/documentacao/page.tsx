@@ -126,10 +126,15 @@ export default function Documentation() {
                     ['400', 'INVALID_CNPJ', 'Identificador inválido.'],
                     ['404', 'NOT_IN_COVERAGE', 'Ausente da cobertura; não comprova inexistência.'],
                     ['429', 'RATE_LIMIT_EXCEEDED', 'Aguarde o período indicado em Retry-After.'],
+                    [
+                      '429',
+                      'PROVIDER_RATE_LIMITED',
+                      'Novas consultas à fonte pausadas; respeite Retry-After.',
+                    ],
                     ['500', 'INTERNAL_ERROR', 'Erro interno sem exposição de detalhes.'],
                     ['503', 'SERVICE_UNAVAILABLE', 'Fonte, persistência ou proteção indisponível.'],
                   ].map((row) => (
-                    <tr key={row[0]}>
+                    <tr key={row[1]}>
                       {row.map((cell, index) => (
                         <td key={index}>{index === 1 ? <code>{cell}</code> : cell}</td>
                       ))}
@@ -142,6 +147,16 @@ export default function Documentation() {
               Padrão: 30 requisições por minuto por origem e 5.000 por dia no total. Limites
               configuráveis no servidor. Em desenvolvimento local, o limite é compartilhado; em
               produção Vercel, a origem usa apenas o cabeçalho confiável da plataforma.
+            </p>
+            <p>
+              CNPJs já armazenados usam o cache persistente. Para consultas novas, o projeto limita
+              a BrasilAPI a 100 tentativas por dia UTC e intervalo mínimo de 15 segundos, sem
+              repetição automática. São tetos próprios, não cotas oficiais. Pausas da fonte
+              respeitam Retry-After; crawling e varreduras são proibidos pelos{' '}
+              <a href="https://brasilapi.com.br/#termos-de-uso" target="_blank" rel="noreferrer">
+                termos da BrasilAPI
+              </a>
+              .
             </p>
             <p>
               Observe <code>X-RateLimit-Remaining</code>, <code>Retry-After</code> e{' '}

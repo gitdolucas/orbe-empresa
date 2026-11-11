@@ -76,6 +76,7 @@ export async function POST(request: Request) {
                   text: JSON.stringify({
                     error: {
                       code: error instanceof ServiceError ? error.code : 'INTERNAL_ERROR',
+                      retryAfter: error instanceof ServiceError ? error.retryAfter : undefined,
                       message:
                         error instanceof ServiceError
                           ? error.userMessage

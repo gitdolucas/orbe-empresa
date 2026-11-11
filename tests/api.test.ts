@@ -1,6 +1,8 @@
 import { beforeEach, afterEach, describe, it, expect, vi } from 'vitest';
 import app from '../src/server/api';
 import { POST as mcpPost } from '../src/app/api/mcp/route';
+import * as provider from '../src/server/provider';
+import { ProviderPolicyError } from '../src/server/provider-policy';
 beforeEach(() => {
   vi.stubEnv('NODE_ENV', 'test');
   vi.stubEnv('DATABASE_URL', '');
@@ -42,6 +44,20 @@ describe('REST contract', () => {
     const body = await response.json();
     expect(body.data).toEqual([]);
     expect(body.meta.comparisonAvailable).toBe(false);
+  });
+  it('exposes a provider pause with Retry-After instead of retrying upstream', async () => {
+    const lookup = vi
+      .spyOn(provider, 'fetchCompany')
+      .mockRejectedValue(new ProviderPolicyError(429, 120));
+    try {
+      const response = await app.request('/api/v1/companies/12345678000195');
+      expect(response.status).toBe(429);
+      expect(response.headers.get('Retry-After')).toBe('120');
+      expect((await response.json()).error.code).toBe('PROVIDER_RATE_LIMITED');
+      expect(lookup).toHaveBeenCalledTimes(1);
+    } finally {
+      lookup.mockRestore();
+    }
   });
   it('fails closed in production when distributed limiting is absent', async () => {
     vi.stubEnv('NODE_ENV', 'production');

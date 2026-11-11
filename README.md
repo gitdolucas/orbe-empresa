@@ -42,14 +42,14 @@ A fonte intermediária não fornece competência do dataset. `datasetPeriod` é 
 
 Evidências: https://ok.org.br/eixos-de-atuacao/prestacao-de-servicos/. Associação CNPJ/domínio: https://ok.org.br/apoie/. Conteúdo do site sob CC BY 4.0, salvo indicação específica. Hash de evidência corresponde ao trecho UTF-8 armazenado. A análise usa taxonomia curada e conferência assistida, não avaliação humana independente nem modelo probabilístico calibrado.
 
-Para recolher a amostra e as evidências (com rede):
+Para adicionar um exemplo pontual e recolher evidências (com rede, apenas por ação explícita do operador):
 
 ```bash
-npm run collect:examples
+npm run collect:examples -- <cnpj>
 npm run collect:evidence
 ```
 
-Esses comandos atualizam os arquivos rastreados da amostra. Não atualizam automaticamente o banco de produção. Execute o seed apenas na implantação inicial; use novas observações/importações para evolução posterior.
+O coletor aceita exatamente um CNPJ por execução, mantém os exemplos anteriores e não consulta novamente um exemplo já armazenado. Coleta em lote, varredura e atualização agendada via BrasilAPI não são implementadas. Esses comandos atualizam os arquivos rastreados da amostra; não atualizam automaticamente o banco de produção. Execute o seed apenas na implantação inicial; use novas observações/importações para evolução posterior.
 
 ## Produção: Vercel + Neon + Upstash
 
@@ -114,6 +114,19 @@ GET /api/v1/health
 Erros: 400 identificador inválido, 404 fora da cobertura, 429 limite, 500 falha interna, 503 dependência indisponível. Consulte `/documentacao` para exemplos. Um 404 não declara que o CNPJ inexiste.
 
 `API_RATE_LIMIT=30`: requisições/minuto/origem. `API_DAILY_LIMIT=5000`: requisições/dia no total. Limites incluem endpoints REST e MCP. O explorador usa até três requisições para um perfil (cadastro, histórico, alterações). Cotas diárias usam UTC. As chaves de origem são hashes rotativos diários; logs não incluem CNPJ ou IP bruto.
+
+### Consumo da BrasilAPI
+
+Os [termos oficiais](https://brasilapi.com.br/#termos-de-uso) proíbem crawling e full scan e pedem consultas com natureza de uma pessoa real buscando um dado. Essa página não publica uma cota numérica. Os tetos abaixo são uma política conservadora própria do Empresa, não uma cota autorizada ou garantia de disponibilidade da BrasilAPI.
+
+- Só um CNPJ válido ausente do Postgres pode consultar a fonte. Registros existentes não expiram nem são atualizados automaticamente; fonte e coleta permanecem explícitas.
+- No máximo **100 tentativas externas por dia UTC**, contando falhas, com **intervalo mínimo de 15 segundos** entre reservas no projeto inteiro. `BRASILAPI_DAILY_LIMIT` pode reduzir o teto; `BRASILAPI_MIN_INTERVAL_SECONDS` pode aumentar o intervalo. O código não permite elevar os tetos conservadores por configuração.
+- Reservas atômicas no Redis entre instâncias; tentativas bloqueadas não gastam a cota externa. Sem Redis em produção, nenhuma nova chamada externa é feita.
+- Trava por CNPJ durante consulta/persistência, deduplicação na instância e carregamento do cadastro antes de histórico/alterações evitam consultas externas duplicadas.
+- Resposta 404 fica em cache por uma hora. Resposta 429 pausa todas as novas consultas externas pelo `Retry-After` recebido (segundos ou data HTTP), por no mínimo um minuto; sem valor válido, pausa de 15 minutos. Falhas de rede/serviço pausam por pelo menos um minuto. Nenhuma repetição automática da chamada externa.
+- A API informa `Retry-After` e `PROVIDER_RATE_LIMITED` (429), ou `SERVICE_UNAVAILABLE` (503). Dados já persistidos continuam disponíveis durante pausas e esgotamento da cota externa.
+- `BRASILAPI_ENABLED=false` desliga novas consultas à fonte preservando a leitura do cache. O coletor manual compartilha a proteção Redis quando configurado; desenvolvimento sem Redis usa controle local por processo, inadequado para coleta distribuída.
+- Testes automatizados usam mocks e empresas da amostra persistida. Validação operacional usa cache e chaves Redis isoladas, sem chamar endpoints de dados da BrasilAPI. Ingestão em volume deve usar datasets próprios autorizados, não a BrasilAPI.
 
 ## MCP beta
 

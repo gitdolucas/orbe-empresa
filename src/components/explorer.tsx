@@ -101,17 +101,21 @@ export function Explorer({
       setError('');
       setInput(formatCnpj(cnpj));
       try {
+        // Persist the first lookup before requesting related resources on other instances.
+        const profileResponse = await fetch(`/api/v1/companies/${cnpj}`, {
+          signal: controller.signal,
+        });
+        const profile: CompanyResponse & { error?: { message: string } } =
+          await profileResponse.json();
+        if (!profileResponse.ok)
+          throw new Error(profile.error?.message ?? 'Consulta indisponível. Tente novamente.');
         const responses = await Promise.all(
-          ['', '/history', '/changes'].map((suffix) =>
+          ['/history', '/changes'].map((suffix) =>
             fetch(`/api/v1/companies/${cnpj}${suffix}`, { signal: controller.signal }),
           ),
         );
-        const profile: CompanyResponse & { error?: { message: string } } =
-          await responses[0].json();
-        if (!responses[0].ok)
-          throw new Error(profile.error?.message ?? 'Consulta indisponível. Tente novamente.');
         const [history, changes] = await Promise.all(
-          responses.slice(1).map(async (response) => {
+          responses.map(async (response) => {
             if (!response.ok)
               throw new Error('Não foi possível carregar histórico. Tente novamente.');
             return response.json();

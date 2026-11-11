@@ -3,12 +3,14 @@ import type { CompanyRecord, CompanyResponse } from '@/lib/company';
 import { getRecord, saveSnapshot } from './repository';
 import { fetchCompany } from './provider';
 import { createSnapshot } from './snapshot-engine';
+import { ProviderPolicyError, withLookupLease } from './provider-policy';
 const inflight = new Map<string, Promise<CompanyRecord>>();
 export class ServiceError extends Error {
   constructor(
     public code: string,
     public status: number,
     public userMessage: string,
+    public retryAfter?: number,
   ) {
     super(code);
   }
@@ -26,16 +28,27 @@ export async function findCompany(input: string): Promise<CompanyRecord> {
   if (inflight.has(cnpj)) return inflight.get(cnpj)!;
   const promise = (async () => {
     try {
-      const { company, source } = await fetchCompany(cnpj);
-      const snapshot = createSnapshot(company, source);
-      await saveSnapshot(snapshot);
-      return { company, snapshots: [snapshot], changes: [], observedActivities: [] };
+      return await withLookupLease(cnpj, async () => {
+        const cached = await getRecord(cnpj);
+        if (cached) return cached;
+        const { company, source } = await fetchCompany(cnpj);
+        const snapshot = createSnapshot(company, source);
+        await saveSnapshot(snapshot);
+        return { company, snapshots: [snapshot], changes: [], observedActivities: [] };
+      });
     } catch (error) {
       if ((error as Error).message === 'COMPANY_NOT_IN_COVERAGE')
         throw new ServiceError(
           'NOT_IN_COVERAGE',
           404,
           'CNPJ não encontrado na cobertura disponível. Isso não comprova inexistência do registro.',
+        );
+      if (error instanceof ProviderPolicyError)
+        throw new ServiceError(
+          error.status === 429 ? 'PROVIDER_RATE_LIMITED' : 'SERVICE_UNAVAILABLE',
+          error.status,
+          'Consulta temporariamente pausada para respeitar a fonte. Aguarde antes de tentar novamente.',
+          error.retryAfter,
         );
       throw new ServiceError(
         'SERVICE_UNAVAILABLE',

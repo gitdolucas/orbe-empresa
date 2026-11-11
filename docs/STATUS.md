@@ -2,22 +2,23 @@
 
 Data: 11/11/2026. Beta publicada em [orbe-empresa-pi.vercel.app](https://orbe-empresa-pi.vercel.app), no projeto pessoal `lucas-limas-projects-633d32f2/orbe-empresa`. Busca por CNPJ e API disponíveis. Neon Postgres e Upstash Redis provisionados no mesmo espaço pessoal, planos gratuitos, região `iad1`, conectados somente à produção. Migração aplicada e amostra importada; persistência, limitação distribuída e consultas públicas verificadas. MVP completo e lançamento comercial ainda pendentes.
 
-| Requisito                    | Estado                              | Evidência / limite                                                                                        |
-| ---------------------------- | ----------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| F01 Consulta por CNPJ        | Implementado                        | BrasilAPI, validação, amostra real, proveniência explícita                                                |
-| F02 Identidade               | Implementado                        | CNPJ básico, estabelecimento e matriz/filial                                                              |
-| F03 Snapshots                | Implementado                        | Imutabilidade, hash, schema e fonte; amostra com uma observação por empresa                               |
-| F04 Mudanças                 | Motor implementado                  | Cinco eventos, idempotência, transações; faltam dois snapshots oficiais autênticos                        |
-| F05 Atividades               | Beta assistida                      | Duas atividades OKBR, evidências reais, confiança média; avaliação humana e métrica de precisão pendentes |
-| F06 REST                     | Implementado                        | Cinco endpoints, erros estruturados, testes                                                               |
-| F07 Interface                | Implementado                        | Responsiva, pública, URLs compartilháveis                                                                 |
-| F08 Documentação             | Implementado                        | pt-BR, exemplos em inglês, fontes e limites                                                               |
-| F09 Proteção/observabilidade | Implementado; configuração pendente | Redis, limites, logs, métricas agregadas, Sentry/analytics opcionais; contas e alertas pendentes          |
-| MCP                          | Implementado, desativado por padrão | Read-only, Bearer, limites, testes de protocolo                                                           |
-| PostgreSQL                   | Neon remoto provisionado e validado | `orbe-empresa-postgres`; migração, três empresas, três snapshots e duas evidências verificadas              |
-| Redis                        | Upstash remoto provisionado         | `orbe-empresa-redis`; plano gratuito, upgrade automático desligado; ping e contador distribuído verificados |
-| Vercel                       | Publicado no espaço pessoal         | Next.js, Node 24, raiz do repo; GitHub `gitdolucas/orbe-empresa`, branch `main`, deploy automático            |
-| Validação comercial          | Pendente                            | Entrevistas, integrações, uso recorrente e piloto pago                                                    |
+| Requisito                    | Estado                              | Evidência / limite                                                                                                                       |
+| ---------------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| F01 Consulta por CNPJ        | Implementado                        | BrasilAPI, validação, amostra real, proveniência explícita                                                                               |
+| F02 Identidade               | Implementado                        | CNPJ básico, estabelecimento e matriz/filial                                                                                             |
+| F03 Snapshots                | Implementado                        | Imutabilidade, hash, schema e fonte; amostra com uma observação por empresa                                                              |
+| F04 Mudanças                 | Motor implementado                  | Cinco eventos, idempotência, transações; faltam dois snapshots oficiais autênticos                                                       |
+| F05 Atividades               | Beta assistida                      | Duas atividades OKBR, evidências reais, confiança média; avaliação humana e métrica de precisão pendentes                                |
+| F06 REST                     | Implementado                        | Cinco endpoints, erros estruturados, testes                                                                                              |
+| F07 Interface                | Implementado                        | Responsiva, pública, URLs compartilháveis                                                                                                |
+| F08 Documentação             | Implementado                        | pt-BR, exemplos em inglês, fontes e limites                                                                                              |
+| F09 Proteção/observabilidade | Implementado; configuração pendente | Redis, limites, logs, métricas agregadas, Sentry/analytics opcionais; contas e alertas pendentes                                         |
+| MCP                          | Implementado, desativado por padrão | Read-only, Bearer, limites, testes de protocolo                                                                                          |
+| PostgreSQL                   | Neon remoto provisionado e validado | `orbe-empresa-postgres`; migração, três empresas, três snapshots e duas evidências verificadas                                           |
+| Redis                        | Upstash remoto provisionado         | `orbe-empresa-redis`; plano gratuito, upgrade automático desligado; ping e contador distribuído verificados                              |
+| Consumo BrasilAPI            | Proteção independente implementada  | Cache persistente, teto próprio de 100 chamadas/dia, espaçamento global de 15s, trava por CNPJ, pausa conforme Retry-After; sem crawling |
+| Vercel                       | Publicado no espaço pessoal         | Next.js, Node 24, raiz do repo; GitHub `gitdolucas/orbe-empresa`, branch `main`, deploy automático                                       |
+| Validação comercial          | Pendente                            | Entrevistas, integrações, uso recorrente e piloto pago                                                                                   |
 
 ## Antes de considerar o MVP tecnicamente concluído
 
@@ -34,7 +35,7 @@ MCP pode permanecer beta posterior conforme plano. Nenhuma alteração históric
 
 - Build de produção Next.js aprovado.
 - TypeScript e formatação aprovados.
-- 33 testes de domínio, API, configuração Redis e MCP aprovados.
+- 45 testes de domínio, API, configuração Redis, consumo BrasilAPI e MCP aprovados.
 - 2 fluxos E2E Playwright aprovados: desktop e mobile.
 - Auditoria npm sem vulnerabilidades conhecidas na execução.
 - Axe: zero violações automáticas; contraste sobre gradientes conferido visualmente.
@@ -49,7 +50,13 @@ Conexões reais com Neon e Upstash verificadas: três empresas, três snapshots,
 - Consulta Petrobras (`33000167000101`), fora da amostra: HTTP 200, persistida no Postgres e reutilizada na chamada seguinte sem novo snapshot. Banco com quatro empresas após esse teste; amostra versionada continua com três.
 - Busca por formulário no desktop; nova consulta no mobile, recarga do perfil e ausência de overflow verificadas no site público.
 - Limite remoto com chave isolada: duas chamadas permitidas, terceira bloqueada, tempo de nova tentativa positivo.
-- CI GitHub Actions aprovada, incluindo 33 testes, build e dois fluxos E2E.
+- CI GitHub Actions aprovada na configuração inicial, incluindo build e dois fluxos E2E. Proteções BrasilAPI verificadas localmente com 45 testes e dois fluxos E2E, sem chamadas reais à fonte.
+
+## Respeito à BrasilAPI
+
+Termos oficiais consultados em 11/11/2026: [BrasilAPI](https://brasilapi.com.br/#termos-de-uso). Sem cota numérica publicada nessa página; crawling e full scan proibidos. Tetos conservadores próprios no servidor, compartilhados por Redis: 100 tentativas externas/dia UTC, mínimo de 15s entre reservas. Configuração só permite reduzir a cota ou aumentar o intervalo. `BRASILAPI_ENABLED=false` desliga a fonte sem impedir leitura dos registros existentes.
+
+Testes de erros, backoff e cache usam mocks. Teste do script Lua no Redis usa chaves isoladas e confirma reserva concorrente única, cota diária, cooldown e cache negativo sem acessar endpoints BrasilAPI. O coletor de exemplos aceita um único CNPJ por execução e reutiliza exemplos já presentes; não há varredura nem rotina agendada.
 
 ## Revisão visual — referência Cara Certa
 

@@ -1,17 +1,8 @@
 import { createHash } from 'node:crypto';
-import { Redis } from '@upstash/redis';
 import { ServiceError } from './company-service';
+import { getRedis } from './redis';
+export { getRedis } from './redis';
 const windows = new Map<string, { count: number; reset: number }>();
-let redis: Redis | undefined;
-export function getRedis() {
-  const [url, token] =
-    process.env.UPSTASH_REDIS_REST_URL && process.env.UPSTASH_REDIS_REST_TOKEN
-      ? [process.env.UPSTASH_REDIS_REST_URL, process.env.UPSTASH_REDIS_REST_TOKEN]
-      : [process.env.KV_REST_API_URL, process.env.KV_REST_API_TOKEN];
-  if (!url || !token) return null;
-  redis ??= new Redis({ url, token });
-  return redis;
-}
 function configuredLimit(value: string | undefined, fallback: number) {
   const parsed = Number(value);
   return Number.isInteger(parsed) && parsed > 0 ? parsed : fallback;
