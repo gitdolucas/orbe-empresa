@@ -1,6 +1,6 @@
 # Estado de entrega — Empresa
 
-Data: 11/11/2026. Beta local; lançamento público ainda pendente.
+Data: 11/11/2026. Beta publicada em [orbe-empresa-pi.vercel.app](https://orbe-empresa-pi.vercel.app), no projeto pessoal `lucas-limas-projects-633d32f2/orbe-empresa`. Home, documentação, fontes e perfil de exemplo respondem HTTP 200. API e health respondem HTTP 503 deliberadamente enquanto Redis não estiver configurado; Postgres remoto também permanece pendente. MVP operacional e lançamento comercial ainda pendentes.
 
 | Requisito                    | Estado                              | Evidência / limite                                                                                        |
 | ---------------------------- | ----------------------------------- | --------------------------------------------------------------------------------------------------------- |
@@ -15,7 +15,7 @@ Data: 11/11/2026. Beta local; lançamento público ainda pendente.
 | F09 Proteção/observabilidade | Implementado; configuração pendente | Redis, limites, logs, métricas agregadas, Sentry/analytics opcionais; contas e alertas pendentes          |
 | MCP                          | Implementado, desativado por padrão | Read-only, Bearer, limites, testes de protocolo                                                           |
 | PostgreSQL                   | Adaptador e migração prontos        | Falta provisionamento e teste em banco remoto                                                             |
-| Vercel                       | Estrutura compatível                | Falta vínculo com projeto e implantação                                                                   |
+| Vercel                       | Publicado no espaço pessoal         | Next.js, Node 24, raiz do repo; GitHub `gitdolucas/orbe-empresa`, branch `main`, deploy automático            |
 | Validação comercial          | Pendente                            | Entrevistas, integrações, uso recorrente e piloto pago                                                    |
 
 ## Antes de considerar o MVP tecnicamente concluído
@@ -24,7 +24,7 @@ Data: 11/11/2026. Beta local; lançamento público ainda pendente.
 2. Obter pelo menos duas competências oficiais genuínas do mesmo conjunto de CNPJs; normalizar, importar e revisar alterações.
 3. Submeter a amostra de atividades à avaliação humana; medir precisão e qualidade de associação. A meta de 90% ainda não foi medida.
 4. Configurar Sentry/analytics, definir orçamento, retenção, atualização e alertas operacionais.
-5. Implantar na Vercel, verificar domínio, health, limites e E2E em produção.
+5. Após configurar dependências, validar health, limites e E2E completos em produção. Primeiro deploy Vercel e páginas públicas já verificados.
 6. Revisar condições de reutilização das fontes para o uso comercial pretendido.
 
 MCP pode permanecer beta posterior conforme plano. Nenhuma alteração histórica simulada aparece no produto. Sem cobertura nacional prometida.
@@ -45,7 +45,7 @@ Conexões reais com Neon, Upstash e Sentry não foram exercitadas: faltam creden
 
 - Paleta clara com preto e lima, Schibsted Grotesk e Geist Mono auto-hospedadas.
 - Navegação horizontal; sidebar, gráfico decorativo e banners removidos.
-- Home apresenta apenas título, busca e exemplos. Nenhum perfil aparece sem ação do visitante.
+- Home apresenta título, busca, exemplos e diagrama SVG ilustrativo com pausa e movimento reduzido. Nenhum perfil aparece sem ação do visitante.
 - Consulta abre página própria; retorno à home restaura a tela simples.
 - Dados adicionais e proveniência em expansões; histórico, atividades e JSON em abas.
 - Fluxos desktop/mobile atualizados e aprovados; home e perfil sem violações automáticas Axe.
