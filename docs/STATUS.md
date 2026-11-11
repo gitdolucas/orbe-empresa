@@ -1,6 +1,6 @@
 # Estado de entrega — Empresa
 
-Data: 11/11/2026. Beta publicada em [orbe-empresa-pi.vercel.app](https://orbe-empresa-pi.vercel.app), no projeto pessoal `lucas-limas-projects-633d32f2/orbe-empresa`. Neon Postgres e Upstash Redis provisionados no mesmo espaço pessoal, planos gratuitos, região `iad1`, conectados somente à produção. Migração aplicada e amostra importada; leitura persistida e contador distribuído verificados. MVP completo e lançamento comercial ainda pendentes.
+Data: 11/11/2026. Beta publicada em [orbe-empresa-pi.vercel.app](https://orbe-empresa-pi.vercel.app), no projeto pessoal `lucas-limas-projects-633d32f2/orbe-empresa`. Busca por CNPJ e API disponíveis. Neon Postgres e Upstash Redis provisionados no mesmo espaço pessoal, planos gratuitos, região `iad1`, conectados somente à produção. Migração aplicada e amostra importada; persistência, limitação distribuída e consultas públicas verificadas. MVP completo e lançamento comercial ainda pendentes.
 
 | Requisito                    | Estado                              | Evidência / limite                                                                                        |
 | ---------------------------- | ----------------------------------- | --------------------------------------------------------------------------------------------------------- |
@@ -25,7 +25,7 @@ Data: 11/11/2026. Beta publicada em [orbe-empresa-pi.vercel.app](https://orbe-em
 2. Obter pelo menos duas competências oficiais genuínas do mesmo conjunto de CNPJs; normalizar, importar e revisar alterações.
 3. Submeter a amostra de atividades à avaliação humana; medir precisão e qualidade de associação. A meta de 90% ainda não foi medida.
 4. Configurar Sentry/analytics, definir orçamento, retenção, atualização e alertas operacionais.
-5. Após configurar dependências, validar health, limites e E2E completos em produção. Primeiro deploy Vercel e páginas públicas já verificados.
+5. Concluído: verificar health, endpoints, consulta pública desktop/mobile e limite Redis. Testes contínuos e validação sob carga permanecem posteriores.
 6. Revisar condições de reutilização das fontes para o uso comercial pretendido.
 
 MCP pode permanecer beta posterior conforme plano. Nenhuma alteração histórica simulada aparece no produto. Sem cobertura nacional prometida.
@@ -41,6 +41,15 @@ MCP pode permanecer beta posterior conforme plano. Nenhuma alteração históric
 - Capturas: [desktop](screenshots/desktop.png) e [mobile](screenshots/mobile.png).
 
 Conexões reais com Neon e Upstash verificadas: três empresas, três snapshots, duas atividades e duas evidências persistidas; leitura de perfil, ping Redis e decremento do contador entre chamadas aprovados. Sentry permanece sem configuração. Esses testes não constituem teste de carga nem garantia de disponibilidade.
+
+## Verificação em produção com os bancos conectados
+
+- Health HTTP 200: `storage: postgresql`, `rateLimit: redis`, MCP desativado.
+- Cadastro, histórico, alterações e atividades da OKBR: HTTP 200; CNPJ inválido: HTTP 400.
+- Consulta Petrobras (`33000167000101`), fora da amostra: HTTP 200, persistida no Postgres e reutilizada na chamada seguinte sem novo snapshot. Banco com quatro empresas após esse teste; amostra versionada continua com três.
+- Busca por formulário no desktop; nova consulta no mobile, recarga do perfil e ausência de overflow verificadas no site público.
+- Limite remoto com chave isolada: duas chamadas permitidas, terceira bloqueada, tempo de nova tentativa positivo.
+- CI GitHub Actions aprovada, incluindo 33 testes, build e dois fluxos E2E.
 
 ## Revisão visual — referência Cara Certa
 

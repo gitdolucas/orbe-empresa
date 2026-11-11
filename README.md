@@ -2,7 +2,7 @@
 
 Infraestrutura de contexto empresarial brasileiro. Interface pública em pt-BR; código e contratos em inglês.
 
-**Estado:** beta publicada em [orbe-empresa-pi.vercel.app](https://orbe-empresa-pi.vercel.app), no espaço pessoal de Lucas Lima na Vercel, com Neon Postgres e Upstash Redis gratuitos conectados à produção. Migração e amostra aplicadas; persistência e contador Redis verificados. Não representa MVP completo nem validação comercial. O plano original está em [`docs/MVP.md`](docs/MVP.md); pendências concretas em [`docs/STATUS.md`](docs/STATUS.md).
+**Estado:** beta publicada em [orbe-empresa-pi.vercel.app](https://orbe-empresa-pi.vercel.app), no espaço pessoal de Lucas Lima na Vercel, com Neon Postgres e Upstash Redis gratuitos conectados à produção. Busca por CNPJ e API disponíveis; health HTTP 200, nova consulta persistida e limitação Redis verificados. Não representa MVP completo nem validação comercial. O plano original está em [`docs/MVP.md`](docs/MVP.md); pendências concretas em [`docs/STATUS.md`](docs/STATUS.md).
 
 ## Executar
 
