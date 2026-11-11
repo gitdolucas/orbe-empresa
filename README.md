@@ -2,7 +2,7 @@
 
 Infraestrutura de contexto empresarial brasileiro. Interface pública em pt-BR; código e contratos em inglês.
 
-**Estado:** beta publicada em [orbe-empresa-pi.vercel.app](https://orbe-empresa-pi.vercel.app), no espaço pessoal de Lucas Lima na Vercel. Páginas públicas disponíveis; API bloqueada com HTTP 503 até configurar Redis. Postgres remoto pendente. Não representa MVP operacionalmente concluído nem validação comercial. O plano original está em [`docs/MVP.md`](docs/MVP.md); pendências concretas em [`docs/STATUS.md`](docs/STATUS.md).
+**Estado:** beta publicada em [orbe-empresa-pi.vercel.app](https://orbe-empresa-pi.vercel.app), no espaço pessoal de Lucas Lima na Vercel, com Neon Postgres e Upstash Redis gratuitos conectados à produção. Migração e amostra aplicadas; persistência e contador Redis verificados. Não representa MVP completo nem validação comercial. O plano original está em [`docs/MVP.md`](docs/MVP.md); pendências concretas em [`docs/STATUS.md`](docs/STATUS.md).
 
 ## Executar
 
@@ -55,8 +55,10 @@ Esses comandos atualizam os arquivos rastreados da amostra. Não atualizam autom
 
 Projeto existente: `lucas-limas-projects-633d32f2/orbe-empresa`, conectado a `gitdolucas/orbe-empresa`, branch `main`. Next.js, Node.js 24 e `npm ci`; Root Directory na raiz deste repositório. Pushes em `main` disparam deploy de produção.
 
+Recursos pessoais existentes: Neon `orbe-empresa-postgres` (Free) e Upstash `orbe-empresa-redis` (Free), ambos em `iad1` e conectados somente à produção. Upgrade automático do Redis desligado. As integrações gerenciam `DATABASE_URL` com pooling e `KV_REST_API_URL`/`KV_REST_API_TOKEN`; o servidor também aceita o par `UPSTASH_REDIS_REST_URL`/`UPSTASH_REDIS_REST_TOKEN`, que tem precedência quando completo. Pares incompletos não são combinados.
+
 1. Configure o projeto Vercel com **Root Directory: `empresa`** caso o repositório seja `orbe-org`. Se publicar esta pasta como repositório separado, use a raiz.
-2. Copie `.env.example` para `.env.local` no desenvolvimento. Na Vercel configure `DATABASE_URL` (conexão Neon com pooling), `UPSTASH_REDIS_REST_URL` e `UPSTASH_REDIS_REST_TOKEN`.
+2. Copie `.env.example` para `.env.local` no desenvolvimento. Em um novo projeto Vercel, conecte Neon e Upstash pelo Marketplace ou configure `DATABASE_URL` (conexão Neon com pooling) e um dos pares Redis acima.
 3. Aplique a migração e importe a amostra num ambiente com essas variáveis disponíveis:
 
 ```bash
@@ -71,7 +73,7 @@ npm run build
 
 O banco funciona como cache persistente da última observação. Reconsultar um CNPJ existente não dispara enriquecimento nem atualização automática; a atualidade fica explícita em `meta`. Rotinas de atualização devem importar novos snapshots. Não existe cron automático neste beta.
 
-Credenciais não são versionadas. Banco remoto, Redis e monitoramento ainda precisam ser configurados no projeto Vercel. Logs estruturados estão implementados; Sentry está integrado para erros técnicos de servidor (`SENTRY_DSN`), sem request, usuário ou breadcrumbs. Vercel Analytics é opcional (`NEXT_PUBLIC_VERCEL_ANALYTICS_ENABLED=true`) e remove CNPJs e query strings das URLs. Configuração de contas, retenção e alertas permanece pendente.
+Credenciais não são versionadas. Banco remoto e Redis estão conectados ao projeto Vercel; monitoramento ainda precisa ser configurado. Logs estruturados estão implementados; Sentry está integrado para erros técnicos de servidor (`SENTRY_DSN`), sem request, usuário ou breadcrumbs. Vercel Analytics é opcional (`NEXT_PUBLIC_VERCEL_ANALYTICS_ENABLED=true`) e remove CNPJs e query strings das URLs. Retenção e alertas permanecem pendentes.
 
 ## Importar snapshots oficiais
 

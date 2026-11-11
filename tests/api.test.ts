@@ -7,6 +7,8 @@ beforeEach(() => {
   vi.stubEnv('API_RATE_LIMIT', '1000');
   vi.stubEnv('UPSTASH_REDIS_REST_URL', '');
   vi.stubEnv('UPSTASH_REDIS_REST_TOKEN', '');
+  vi.stubEnv('KV_REST_API_URL', '');
+  vi.stubEnv('KV_REST_API_TOKEN', '');
 });
 afterEach(() => vi.unstubAllEnvs());
 describe('REST contract', () => {

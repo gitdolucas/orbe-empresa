@@ -1,6 +1,6 @@
 # Estado de entrega — Empresa
 
-Data: 11/11/2026. Beta publicada em [orbe-empresa-pi.vercel.app](https://orbe-empresa-pi.vercel.app), no projeto pessoal `lucas-limas-projects-633d32f2/orbe-empresa`. Home, documentação, fontes e perfil de exemplo respondem HTTP 200. API e health respondem HTTP 503 deliberadamente enquanto Redis não estiver configurado; Postgres remoto também permanece pendente. MVP operacional e lançamento comercial ainda pendentes.
+Data: 11/11/2026. Beta publicada em [orbe-empresa-pi.vercel.app](https://orbe-empresa-pi.vercel.app), no projeto pessoal `lucas-limas-projects-633d32f2/orbe-empresa`. Neon Postgres e Upstash Redis provisionados no mesmo espaço pessoal, planos gratuitos, região `iad1`, conectados somente à produção. Migração aplicada e amostra importada; leitura persistida e contador distribuído verificados. MVP completo e lançamento comercial ainda pendentes.
 
 | Requisito                    | Estado                              | Evidência / limite                                                                                        |
 | ---------------------------- | ----------------------------------- | --------------------------------------------------------------------------------------------------------- |
@@ -14,13 +14,14 @@ Data: 11/11/2026. Beta publicada em [orbe-empresa-pi.vercel.app](https://orbe-em
 | F08 Documentação             | Implementado                        | pt-BR, exemplos em inglês, fontes e limites                                                               |
 | F09 Proteção/observabilidade | Implementado; configuração pendente | Redis, limites, logs, métricas agregadas, Sentry/analytics opcionais; contas e alertas pendentes          |
 | MCP                          | Implementado, desativado por padrão | Read-only, Bearer, limites, testes de protocolo                                                           |
-| PostgreSQL                   | Adaptador e migração prontos        | Falta provisionamento e teste em banco remoto                                                             |
+| PostgreSQL                   | Neon remoto provisionado e validado | `orbe-empresa-postgres`; migração, três empresas, três snapshots e duas evidências verificadas              |
+| Redis                        | Upstash remoto provisionado         | `orbe-empresa-redis`; plano gratuito, upgrade automático desligado; ping e contador distribuído verificados |
 | Vercel                       | Publicado no espaço pessoal         | Next.js, Node 24, raiz do repo; GitHub `gitdolucas/orbe-empresa`, branch `main`, deploy automático            |
 | Validação comercial          | Pendente                            | Entrevistas, integrações, uso recorrente e piloto pago                                                    |
 
 ## Antes de considerar o MVP tecnicamente concluído
 
-1. Provisionar Neon e Upstash, aplicar migrações e seed; validar transações e limites em ambiente remoto.
+1. Concluído: provisionar Neon e Upstash, aplicar migrações e seed; verificar persistência e contadores remotos. A validação completa de concorrência distribuída permanece posterior.
 2. Obter pelo menos duas competências oficiais genuínas do mesmo conjunto de CNPJs; normalizar, importar e revisar alterações.
 3. Submeter a amostra de atividades à avaliação humana; medir precisão e qualidade de associação. A meta de 90% ainda não foi medida.
 4. Configurar Sentry/analytics, definir orçamento, retenção, atualização e alertas operacionais.
@@ -33,13 +34,13 @@ MCP pode permanecer beta posterior conforme plano. Nenhuma alteração históric
 
 - Build de produção Next.js aprovado.
 - TypeScript e formatação aprovados.
-- 30 testes de domínio, API e MCP aprovados.
+- 33 testes de domínio, API, configuração Redis e MCP aprovados.
 - 2 fluxos E2E Playwright aprovados: desktop e mobile.
 - Auditoria npm sem vulnerabilidades conhecidas na execução.
 - Axe: zero violações automáticas; contraste sobre gradientes conferido visualmente.
 - Capturas: [desktop](screenshots/desktop.png) e [mobile](screenshots/mobile.png).
 
-Conexões reais com Neon, Upstash e Sentry não foram exercitadas: faltam credenciais. O beta local não comprova comportamento distribuído nem disponibilidade de produção.
+Conexões reais com Neon e Upstash verificadas: três empresas, três snapshots, duas atividades e duas evidências persistidas; leitura de perfil, ping Redis e decremento do contador entre chamadas aprovados. Sentry permanece sem configuração. Esses testes não constituem teste de carga nem garantia de disponibilidade.
 
 ## Revisão visual — referência Cara Certa
 
